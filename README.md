@@ -1,4 +1,4 @@
-# marvel_api
+# Creating API with flask featuring Marvel characters
 
 Throughout this week we have been learning how to create a project with flask. More specifically, we have been learning how to create an RESTful Web API that would expose our data from a database to authenticated users.
 
