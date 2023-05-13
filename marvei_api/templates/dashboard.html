@@ -1,0 +1,8 @@
+<h1>Dashboard>/h1>
+    <h2>Welcome   {{ current_user.name }}!</h2>
+    <ul>
+    {{% for character in characters %}}
+        <li>{{character.name}}</li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('logout') }}">LogOut</a>
