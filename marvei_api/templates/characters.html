@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Marvel Character</title>
+  <style>
+</head>
+<body>
+  <h1>Marvel Character</h1>
+  
+{% for character in characters %}
+  <div class="character-card">
+    <h2>{{ character.name }}</h2>
+    <p><strong>Description:</strong> {{ character.description }}</p>
+    <p><strong>Comics Appeared In:</strong> {{character.comics_appeared_in }}</p>
+    <p><strong>Super Power:</strong> {{character.super_power }}</p>
+    <p><strong>Date Created:</strong> {{character.date_created }}</p>
+  </div>
+{% endfor %}    
+    
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/characters">Characters</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>
