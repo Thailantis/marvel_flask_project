@@ -31,3 +31,21 @@ def dashboard():
 def logout():
   logout_user()
   return redirect(url_for('login'))
+
+@app.route('/characters', methods=['GEt', 'POST'])
+@login_required
+def characters():
+  form = CharacterForm()
+  if form.validate_on_submit():
+    character = Character(
+      name=form.name.data,
+      description=form.description.data,
+      comics_appeared_in=form.comics_appeared_in.data,
+      super_power=form.super_power.data,
+      owner=current_user
+    )
+    db.session.add(character)
+    db.session.commit()
+    return 'Character created successfully!'
+  characters = Character.query.filter_by(owner=current_user).all()
+  return render-template('characters.html', form=form, characters=characters)
