@@ -37,13 +37,14 @@ def logout():
 def characters():
   form = CharacterForm()
   if form.validate_on_submit():
-    character = Character(
+    character = Character{
+      marvel_list= ('Spider-Man', 'Iron Man', 'Captain America', 'Thor', 'Hulk', 'Black Widow', 'Hawkeye', 'Black Panther', 'Wolverine', 'Deadpool'),
       name=form.name.data,
       description=form.description.data,
       comics_appeared_in=form.comics_appeared_in.data,
       super_power=form.super_power.data,
       owner=current_user
-    )
+    }
     db.session.add(character)
     db.session.commit()
     return 'Character created successfully!'
