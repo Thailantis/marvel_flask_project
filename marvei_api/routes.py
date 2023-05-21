@@ -38,7 +38,7 @@ def characters():
   form = CharacterForm()
   if form.validate_on_submit():
     character = Character(
-      marvel_list= ('Spider-Man', 'Iron Man', 'Captain America', 'Thor', 'Hulk', 'Black Widow', 'Hawkeye', 'Black Panther', 'Wolverine', 'Deadpool'),
+      marvel_list= ('Spider-Man', 'Iron Man', 'Captain America', 'Thor', 'Hulk', 'Black Widow', 'Hawkeye', 'Black Panther', 'Wolverine', 'Deadpool', 'Storm', 'Ant-Man'),
       name=form.name.data,
       description=form.description.data,
       comics_appeared_in=form.comics_appeared_in.data,
@@ -47,6 +47,6 @@ def characters():
     )
     db.session.add(character)
     db.session.commit()
-    return 'Character created successfully!'
+    return redirect(url_for('dashboard'))
   characters = Character.query.filter_by(owner=current_user).all()
-  return render-template('characters.html', form=form, characters=characters)
+  return render_template('characters.html', form=form, characters=characters)
