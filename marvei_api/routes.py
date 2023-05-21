@@ -1,8 +1,8 @@
-from app import app, db
+from . import app, db
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, login_user, current_user, logout_user
-from models import User, Character
-frin forms import LoginForm
+from app.models import User, Character
+from app.forms import LoginForm, CharacterForm
 
 @app.route('/')
 def index():
@@ -17,7 +17,7 @@ def login():
       login_user(user)
       return redirect(url_for('dashboard'))
     else:
-      flash('Invalid email address or password', 'error, try again')
+      flash('Invalid email address or password', 'error, try again.')
   return render_template('login.html', form=form)
 
 @app.route('/dashboard')
@@ -32,19 +32,19 @@ def logout():
   logout_user()
   return redirect(url_for('login'))
 
-@app.route('/characters', methods=['GEt', 'POST'])
+@app.route('/characters', methods=['GET', 'POST'])
 @login_required
 def characters():
   form = CharacterForm()
   if form.validate_on_submit():
-    character = Character{
+    character = Character(
       marvel_list= ('Spider-Man', 'Iron Man', 'Captain America', 'Thor', 'Hulk', 'Black Widow', 'Hawkeye', 'Black Panther', 'Wolverine', 'Deadpool'),
       name=form.name.data,
       description=form.description.data,
       comics_appeared_in=form.comics_appeared_in.data,
       super_power=form.super_power.data,
       owner=current_user
-    }
+    )
     db.session.add(character)
     db.session.commit()
     return 'Character created successfully!'
